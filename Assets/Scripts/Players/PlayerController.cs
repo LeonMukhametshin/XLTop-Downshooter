@@ -39,7 +39,7 @@ namespace Players
 
                 if(navPoint.HasValue)
                 {
-                    m_movement.Set(navPoint.Value);
+                    m_movement.SetDestination(navPoint.Value);
                 }
             }
         }
