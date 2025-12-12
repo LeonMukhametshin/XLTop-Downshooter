@@ -7,9 +7,7 @@ namespace Players
     [RequireComponent (typeof(NavMeshAgent))]
     public class PlayerMovement : MonoBehaviour
     {
-        // Событие остановки игрока.
         public event Action Stopped;
-        // Событие об изменение точки достижения.
         public event Action<Vector3> DestinationChanged;
 
         [SerializeField] private NavMeshAgent m_agent;

@@ -27,7 +27,8 @@ namespace Players
         private void Start()
         {
             m_mouseResolver.Initialize(Camera.main);
-            m_movement.Initialize(m_config.m_speed);
+            m_movement.Initialize(m_config.speed);
+            SetupCursor();
         }
 
         private void Update()
@@ -41,6 +42,16 @@ namespace Players
                 {
                     m_movement.SetDestination(navPoint.Value);
                 }
+            }
+        }
+
+        private void SetupCursor()
+        {
+            var textures = m_config.cursoreTexture;
+            var hospot = new Vector2(textures.width / 2f, textures.height / 2f);
+            if(textures is not null)
+            {
+                Cursor.SetCursor(textures, hospot, CursorMode.Auto);
             }
         }
     }

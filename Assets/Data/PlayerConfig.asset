@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46775b22fab6aab4b9ed54ec3e667735, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: Assembly-CSharp::Players.PlayerConfig
-  <m_speed>k__BackingField: 5
+  <speed>k__BackingField: 5
+  <cursoreTexture>k__BackingField: {fileID: 2800000, guid: a9c897dbcc6a1c84a90727a9487440ef, type: 3}
+  <m_angularSpeed>k__BackingField: 500
