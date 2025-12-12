@@ -8,7 +8,8 @@ public abstract class BaceSpellData : ScriptableObject
     [SerializeField] private ElementType[] m_combination;
 
     //Effects[]
-    [SerializeReferenceDropdown] private IEffect[] m_effects;
+    [SerializeReferenceDropdown] 
+    [SerializeField] private IEffect[] m_effects;
 
     public string SpellName => m_spellName;
     public GameObject VisualEffect => m_visualEffect;

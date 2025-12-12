@@ -15,4 +15,4 @@ MonoBehaviour:
   m_spellName: FireBall
   m_visualEffect: {fileID: 0}
   m_combination: 00000000
-  m_speed: 10
+  m_speed: 9.91
