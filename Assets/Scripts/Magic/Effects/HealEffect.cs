@@ -8,6 +8,9 @@ public class HealEffect : IEffect
 
     public void Apply(IEffectable effectable)
     {
-        //Do something
+        if(effectable is IHealth health)
+        {
+            m_health.Heal(m_health);
+        }
     }
 }

@@ -8,6 +8,9 @@ public class AttackEffect : IEffect
 
     public void Apply(IEffectable effectable)
     {
-        // Do something
+        if(effectable is IHealth health)
+        {
+            health.TakeDamage(m_damage);
+        }
     }
 }
