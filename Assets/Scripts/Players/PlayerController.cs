@@ -12,6 +12,8 @@ namespace Players
         [SerializeField] private Transform m_targetPositon;
         [SerializeField] private PlayerConfig m_config;
 
+        private PlayerRotationCulculator m_playerRotationCulculator;
+
         private void OnValidate()
         {
             if (!m_movement)
@@ -26,16 +28,22 @@ namespace Players
 
         private void Start()
         {
-            m_mouseResolver.Initialize(Camera.main);
-            m_movement.Initialize(m_config.speed);
+            var camera = Camera.main;
+            m_mouseResolver.Initialize(camera);
+            m_movement.Initialize(m_config.speed, m_config.m_angularSpeed);
+            m_playerRotationCulculator = new PlayerRotationCulculator(camera, transform);
+
             SetupCursor();
         }
 
         private void Update()
         {
+            Vector3 mousePosition = Mouse.current.position.ReadValue();
+            var loockPoint = m_playerRotationCulculator.Calculate(mousePosition);
+            m_movement.RotateTowards(loockPoint);
+
             if (Mouse.current.rightButton.wasPressedThisFrame)
             {
-                Vector3 mousePosition = Mouse.current.position.ReadValue();
                 Vector3? navPoint = m_mouseResolver.GetNavMeshPoint(mousePosition);
 
                 if(navPoint.HasValue)
