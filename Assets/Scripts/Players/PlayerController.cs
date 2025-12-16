@@ -4,13 +4,13 @@ using UnityEngine.InputSystem;
 namespace Players
 {
     [RequireComponent(typeof(PlayerMovement))]
-    [RequireComponent(typeof(NaveshMouseResolver))]
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private PlayerMovement m_movement;
-        [SerializeField] private NaveshMouseResolver m_mouseResolver;
+        [SerializeField] private MouseResolver m_mouseResolver;
         [SerializeField] private Transform m_targetPositon;
         [SerializeField] private PlayerConfig m_config;
+        [SerializeField] private MagicInputHandler m_input;
 
         private PlayerRotationCulculator m_playerRotationCulculator;
 
@@ -22,14 +22,14 @@ namespace Players
             }
             if (!m_mouseResolver)
             {
-                m_mouseResolver = GetComponent<NaveshMouseResolver>();
+                m_mouseResolver = GetComponent<MouseResolver>();
             }
         }
 
         private void Start()
         {
             var camera = Camera.main;
-            m_mouseResolver.Initialize(camera);
+
             m_movement.Initialize(m_config.speed, m_config.m_angularSpeed);
             m_playerRotationCulculator = new PlayerRotationCulculator(camera, transform);
 
@@ -51,6 +51,8 @@ namespace Players
                     m_movement.SetDestination(navPoint.Value);
                 }
             }
+
+            m_input.Update();
         }
 
         private void SetupCursor()

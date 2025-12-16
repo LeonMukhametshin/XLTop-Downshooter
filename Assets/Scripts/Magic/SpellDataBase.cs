@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "SpellDataBase", menuName = "ScriptableObject/Spels/SpellDataBase")]
 public sealed class SpellDataBase : ScriptableObject
 {
     [SerializeField] private BaceSpellData[] m_spellData;

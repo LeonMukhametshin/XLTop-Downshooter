@@ -10,7 +10,7 @@ public class HealEffect : IEffect
     {
         if(effectable is IHealth health)
         {
-            m_health.Heal(m_health);
+            
         }
     }
 }
