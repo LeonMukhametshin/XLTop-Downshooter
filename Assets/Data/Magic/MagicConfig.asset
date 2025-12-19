@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MagicConfig
   m_EditorClassIdentifier: Assembly-CSharp::MagicConfig
   m_elementsData: {fileID: 11400000, guid: 46ebc0b23a5856a4c9f7554f7738e4a4, type: 2}
-  m_spellsDataBase: {fileID: 0}
+  m_spellsDataBase: {fileID: 11400000, guid: c9a7a1f48ab816c45b851a82559bcc52, type: 2}
   m_maxelements: 3
   m_cancelCooldown: 0

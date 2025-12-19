@@ -1575,17 +1575,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661c2e7a8ba434b469912b14d7e9af78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Players.PlayerMovement
---- !u!114 &2026275390 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9083465035341639683, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-  m_PrefabInstance: {fileID: 8783034408180062342}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79fc0232cc09a1c47838a049ca0f7080, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSystem
 --- !u!1001 &7511298158768342136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1691,41 +1680,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 413119303125555882, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 413119303125555882, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 413119303125555882, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 413119303125555882, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3079516027687170321, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3459636563261100125, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3459636563261100125, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3459636563261100125, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3459636563261100125, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4266835282202769629, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1767,22 +1724,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6698085226568495546, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6698085226568495546, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6698085226568495546, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6698085226568495546, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7379310458929605894, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
       propertyPath: m_mouseResolver
       value: 
@@ -1791,14 +1732,6 @@ PrefabInstance:
       propertyPath: m_targetPositon
       value: 
       objectReference: {fileID: 761025574}
-    - target: {fileID: 7379310458929605894, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_input.m_magicSystem
-      value: 
-      objectReference: {fileID: 2026275390}
-    - target: {fileID: 9083465035341639683, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_config
-      value: 
-      objectReference: {fileID: 11400000, guid: 054ed7a5a41736946b0e41fb8e963b5c, type: 2}
     - target: {fileID: 9083465035341639683, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
       propertyPath: m_mouseResolver
       value: 

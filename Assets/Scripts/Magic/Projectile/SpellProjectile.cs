@@ -88,7 +88,4 @@ public class SpellProjectile : MonoBehaviour, ISpellProjectile
 
     private void SetLinearVelocity() =>
         m_rigidbody.linearVelocity = m_direction * m_speed;
-
-
 }
-
