@@ -16,7 +16,7 @@ public class SpellPreporation
 
     public void AddElement(ElementType elementType)
     {
-        if(m_elements.Count >= m_magicConfig.MaxElements)
+        if(m_elements.Count >= m_magicConfig.maxElements)
         {
             Clear();
             overflowReccured?.Invoke();
@@ -35,7 +35,7 @@ public class SpellPreporation
         {
             return false;
         }
-        foreach(var spellData in m_magicConfig.SpellDataBase.spells)
+        foreach(var spellData in m_magicConfig.spellDataBase.spells)
         {
             if (ISMatchingConmination(spellData.combination))
             {

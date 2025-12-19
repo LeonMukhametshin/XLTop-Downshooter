@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 901692068847485539}
   - component: {fileID: 7379310458929605894}
   - component: {fileID: 9083465035341639683}
+  - component: {fileID: 7469625908855406850}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -404,7 +405,7 @@ MonoBehaviour:
   m_targetPositon: {fileID: 0}
   m_config: {fileID: 11400000, guid: 56bebde9199ca724088b86afe41267f0, type: 2}
   m_input:
-    m_magicSystem: {fileID: 0}
+    m_magicSystem: {fileID: 9083465035341639683}
     m_element1Key: 31
     m_element2Key: 37
     m_element3Key: 19
@@ -421,8 +422,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79fc0232cc09a1c47838a049ca0f7080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSystem
-  m_config: {fileID: 0}
+  m_config: {fileID: 11400000, guid: 054ed7a5a41736946b0e41fb8e963b5c, type: 2}
   m_mouseResolver: {fileID: 0}
+--- !u!114 &7469625908855406850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079516027687170321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55ef9eaeafa82347b599f1f67a7b5dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PreparationSpellView
+  m_magicSystem: {fileID: 9083465035341639683}
+  m_config: {fileID: 11400000, guid: 054ed7a5a41736946b0e41fb8e963b5c, type: 2}
+  m_elementsContainer: {fileID: 6172629527117145187}
+  m_icons:
+  - {fileID: 8693491559707563327}
+  - {fileID: 1464237889057486040}
+  - {fileID: 5556830946310725576}
+  m_shakeIntensity: 20
+  m_shakeDuration: 1
 --- !u!1 &4935533625611664900
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +644,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 375269842763331667, guid: 5edb5e03654281445ba990d6d7237507, type: 3}
   m_PrefabInstance: {fileID: 40119247777882873}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5556830946310725576 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5589913214437260593, guid: 5edb5e03654281445ba990d6d7237507, type: 3}
+  m_PrefabInstance: {fileID: 40119247777882873}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &3834288351640463374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -732,6 +765,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 375269842763331667, guid: 5edb5e03654281445ba990d6d7237507, type: 3}
   m_PrefabInstance: {fileID: 3834288351640463374}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8693491559707563327 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5589913214437260593, guid: 5edb5e03654281445ba990d6d7237507, type: 3}
+  m_PrefabInstance: {fileID: 3834288351640463374}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &6467548299849828841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -837,6 +881,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5edb5e03654281445ba990d6d7237507, type: 3}
+--- !u!114 &1464237889057486040 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5589913214437260593, guid: 5edb5e03654281445ba990d6d7237507, type: 3}
+  m_PrefabInstance: {fileID: 6467548299849828841}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!224 &6698085226568495546 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 375269842763331667, guid: 5edb5e03654281445ba990d6d7237507, type: 3}

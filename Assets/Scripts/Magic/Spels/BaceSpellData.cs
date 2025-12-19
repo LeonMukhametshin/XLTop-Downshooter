@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public abstract class BaceSpellData : ScriptableObject
 {
@@ -11,9 +12,10 @@ public abstract class BaceSpellData : ScriptableObject
     [SerializeReferenceDropdown] 
     [SerializeField] private IEffect[] m_effects;
 
-    public string SpellName => m_spellName;
-    public GameObject VisualEffect => m_visualEffect;
+    public string spellName => m_spellName;
+    public GameObject visualEffect => m_visualEffect;
     public ElementType[] combination => m_combination;
+    public IEffect[] effects => m_effects;
 
     private void OnValidate()
     {

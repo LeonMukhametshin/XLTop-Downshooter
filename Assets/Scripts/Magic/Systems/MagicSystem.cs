@@ -33,7 +33,7 @@ public class MagicSystem : MonoBehaviour
         }
     }
 
-    private SpellCuster m_custer;
+    private SpellCaster m_custer;
 
     private SpellPreporation spellPreporation =>
         m_spellPreporation ??= new SpellPreporation(m_config);
@@ -75,7 +75,7 @@ public class MagicSystem : MonoBehaviour
     private IEnumerator CooldownRoutine()
     {
         state = MagicState.Cooldown;
-        yield return new WaitForSeconds(m_config.CancelCooldown);
+        yield return new WaitForSeconds(m_config.cancelCooldown);
         state = MagicState.Idle;
 
         m_cooldownCoroutine = null;
