@@ -1,3 +1,4 @@
+using Players;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,7 +14,6 @@ public class SpellProjectile : MonoBehaviour, ISpellProjectile
     private float m_targetDistance;
     private float m_traveledDistance;
     private IReadOnlyList<IEffect> m_effects;
-
 
     private void OnValidate()
     {
@@ -48,6 +48,7 @@ public class SpellProjectile : MonoBehaviour, ISpellProjectile
     private void OnTriggerEnter(Collider other)
     {
         if (!m_initialized) return;
+        if (other.GetComponent<PlayerController>()) return;
 
         if (other.TryGetComponent<IEffectable>(out var effectable))
             ApplyEffects(effectable);
