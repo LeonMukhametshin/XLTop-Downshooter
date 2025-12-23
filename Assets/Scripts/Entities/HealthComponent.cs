@@ -9,7 +9,7 @@ public class HealthComponent : MonoBehaviour, IHealth, IEffectable
     private float m_value;
     private bool m_isInitialize = false;
 
-    public float Value
+    public float value
     {
         get => m_value;
         private set
@@ -43,7 +43,7 @@ public class HealthComponent : MonoBehaviour, IHealth, IEffectable
         if (heal < 0)
             throw new ArgumentOutOfRangeException(nameof(heal), "Heal cannot be hegative");
 
-        Value += heal;
+        value += heal;
     }
 
     public void TakeDamage(float damage)
@@ -51,6 +51,6 @@ public class HealthComponent : MonoBehaviour, IHealth, IEffectable
         if (damage < 0)
             throw new ArgumentOutOfRangeException(nameof(damage), "Heal cannot be hegative");
 
-        Value += damage;
+        value += damage;
     }
 }   

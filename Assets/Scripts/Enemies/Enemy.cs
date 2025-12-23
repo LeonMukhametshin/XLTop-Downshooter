@@ -1,11 +1,16 @@
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public event Action<Enemy> died;
+
     [SerializeField] private HealthComponent m_healthComponent;
     [SerializeField] private EnemyData m_enemyData;
 
     private EnemyData m_data;
+
+    public HealthComponent Health => m_healthComponent;
 
     //TODO add HealthComponent
     //TODO add Movement 
@@ -15,7 +20,7 @@ public class Enemy : MonoBehaviour
     {
         m_healthComponent.valueChanged += () =>
         {
-            Debug.Log($"Health changed: {m_healthComponent.Value}");
+            Debug.Log($"Health changed: {m_healthComponent.value}");
         };
 
         m_healthComponent.died += OnDied;
@@ -37,9 +42,6 @@ public class Enemy : MonoBehaviour
         m_healthComponent.Initialize(data.health);
     }
 
-    private void OnDied()
-    {
-        Debug.Log("Died");
-        Destroy(gameObject);
-    }
+    private void OnDied() =>
+        died?.Invoke(this);
 }
