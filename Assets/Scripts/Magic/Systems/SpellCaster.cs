@@ -36,7 +36,8 @@ public sealed class SpellCaster
     {
         if (spell.visualEffect)
         {
-            UnityEngine.Object.Instantiate(spell.visualEffect, m_casterTransform.position, Quaternion.identity);
+            var visualEffect = UnityEngine.Object.Instantiate(spell.visualEffect, m_casterTransform.position, Quaternion.identity);
+            SetLayer(visualEffect);
         }
 
         if (m_casterTransform.TryGetComponent<IEffectable>(out var effectable))
@@ -56,8 +57,9 @@ public sealed class SpellCaster
         }
 
         var projectile = UnityEngine.Object.Instantiate(spell.visualEffect, m_casterTransform.position, Quaternion.identity);
+        SetLayer(projectile);
 
-         var spellProjectile =
+        var spellProjectile =
             projectile.GetComponent<ISpellProjectile>() ??
             projectile.AddComponent<SpellProjectile>();
 
@@ -71,6 +73,7 @@ public sealed class SpellCaster
         var aoe = spell.visualEffect
                ? UnityEngine.Object.Instantiate(spell.visualEffect, m_casterTransform.position, Quaternion.identity)
                : new GameObject();
+        SetLayer(aoe);
 
         aoe.transform.position = worldPosition;
 
@@ -80,4 +83,7 @@ public sealed class SpellCaster
 
         spellAoe.Initialize(worldPosition, spell.radius, spell.effects);
     }
+
+    private void SetLayer(GameObject visualEffect) =>
+        visualEffect.layer = m_casterTransform.gameObject.layer;
 }

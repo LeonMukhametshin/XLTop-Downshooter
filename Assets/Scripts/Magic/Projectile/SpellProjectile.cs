@@ -48,10 +48,11 @@ public class SpellProjectile : MonoBehaviour, ISpellProjectile
     private void OnTriggerEnter(Collider other)
     {
         if (!m_initialized) return;
-        if (other.GetComponent<PlayerController>()) return;
 
         if (other.TryGetComponent<IEffectable>(out var effectable))
-            ApplyEffects(effectable);
+            m_effects.ApplyEffect(effectable);
+
+        m_effects.ApplyEffect(other.GetComponents<IEffectable>());
 
         Destroy(gameObject);
     }
@@ -75,16 +76,6 @@ public class SpellProjectile : MonoBehaviour, ISpellProjectile
         m_initialized = true;
 
         SetLinearVelocity();
-    }
-
-    private void ApplyEffects(IEffectable target)
-    {
-        if (m_effects is null) return;
-
-        foreach (var effect in m_effects)
-        {
-            effect?.Apply(target);
-        }
     }
 
     private void SetLinearVelocity() =>

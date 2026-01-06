@@ -6,7 +6,14 @@ public class SpawnerEnemy : MonoBehaviour
     [SerializeField] private EnemyData[] m_datas;
 
     [SerializeField] private Transform[] m_spawnPoints;
-    
+    [SerializeField] private Transform m_playerTransfrom;
+
+    //TODO Remove
+    private void Start()
+    {
+        Spawn();
+    }
+
     public void Spawn()
     {
         foreach(var point in m_spawnPoints)
@@ -15,14 +22,15 @@ public class SpawnerEnemy : MonoBehaviour
             var enemyData = GetEnemyData();
 
             var enemyInstance = Instantiate(enemy, point);
-            enemyInstance.Initialize(enemyData);
+            enemyInstance.Initialize(enemyData, m_playerTransfrom);
 
-            enemy.died += OnDied;
+            enemy.Died += OnDied;
         }
     }
 
     private void OnDied(Enemy enemy)
     {
+        enemy.Died -= OnDied;
         Destroy(enemy.gameObject);
     }
 
