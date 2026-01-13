@@ -7,13 +7,14 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private HealthComponent m_healthComponent;
     [SerializeField] private AttackEnemySystem m_attackEnemySystem;
+    [SerializeField] private EnemyMovement m_movement;
 
     private EnemyData m_data;
     private Transform m_playerTransfrom;
     private EnemyStateMachine m_stateMachine;
 
     //TODO add HealthComponent
-    //TODO add Movement 
+    //TODO add Movement
     //TODO add AttackComponent
 
     private void Awake()
@@ -49,8 +50,14 @@ public class Enemy : MonoBehaviour
         m_playerTransfrom = playerTransfrom;
         m_healthComponent.Initialize(data.health);
         m_attackEnemySystem.Initialize(data.spellData, playerTransfrom, data.attackTime);
+        m_movement.Initialize(data.speed, playerTransfrom);
 
         m_stateMachine ??= new EnemyStateMachine();
+
+        if(m_data.enemyType == AttackEnemyType.Melee)
+        {
+            m_stateMachine.ChangedState(EnemyState.Move);
+        }
     }
 
     private void UpdateState()
@@ -88,7 +95,7 @@ public class Enemy : MonoBehaviour
         {
             m_stateMachine.ChangedState(EnemyState.Attack);
         }
-    }
+    }  
 
     private void HeandleIdleState(bool isInAttackRange)
     {
@@ -114,6 +121,14 @@ public class Enemy : MonoBehaviour
 
     private void OnStateChanged(EnemyState previousState, EnemyState nextState)
     {
-        //TODO Add movement
+        if(previousState is EnemyState.Move)
+        {
+            m_movement.StopMoving();
+        }
+
+        if(nextState is EnemyState.Move)
+        {
+            m_movement.StartMoving();
+        }
     }
 }

@@ -1,13 +1,16 @@
-using System;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public sealed class SpellCaster
 {
+    private readonly bool m_isSingelSpell;
     private readonly Transform m_casterTransform;
+    private ObjectPool<GameObject> m_visualEffectPool;
 
-    public SpellCaster(Transform casterTransformer)
+    public SpellCaster(Transform casterTransformer, bool isSingelSpell = false)
     {
         m_casterTransform = casterTransformer;
+        m_isSingelSpell = isSingelSpell;
     }
 
     public void Cast(BaceSpellData spell, Vector3 worldPosition)
@@ -40,13 +43,8 @@ public sealed class SpellCaster
             SetLayer(visualEffect);
         }
 
-        if (m_casterTransform.TryGetComponent<IEffectable>(out var effectable))
-        {
-            foreach (var effect in spell.effects)
-            {
-                effect.Apply(effectable);
-            }
-        }
+        var effectable = m_casterTransform.GetComponent<IEffectable>();
+        spell.effects.ApplyEffect(effectable);
     }
 
     private void CastTarget(TargetSpellData spell, Vector3 worldPosition)
@@ -70,20 +68,35 @@ public sealed class SpellCaster
 
     private void CastAoe(AoeSpellData spell, Vector3 worldPosition) 
     {
-        var aoe = spell.visualEffect
-               ? UnityEngine.Object.Instantiate(spell.visualEffect, m_casterTransform.position, Quaternion.identity)
-               : new GameObject();
-        SetLayer(aoe);
+        GameObject aoe;
 
+        if(m_isSingelSpell)
+        {
+            m_visualEffectPool ??= new ObjectPool<GameObject>(
+                () => Create(),
+                gm => gm.SetActive(true),
+                gm => gm.SetActive(false),
+                Object.Destroy());
+        }
+        else
+        {
+            aoe = Create();
+        }
+
+        SetLayer(aoe);
         aoe.transform.position = worldPosition;
+
 
         var spellAoe =
             aoe.GetComponent<ISpellAoe>() ??
             aoe.AddComponent<SpellAoe>();
 
         spellAoe.Initialize(worldPosition, spell.radius, spell.effects);
+
+        GameObject Create() =>
+            UnityEngine.Object.Instantiate(spell.visualEffect, m_casterTransform.position, Quaternion.identity)
     }
 
-    private void SetLayer(GameObject visualEffect) =>
+    private void SetLayer(UnityEngine.GameObject visualEffect) =>
         visualEffect.layer = m_casterTransform.gameObject.layer;
 }
