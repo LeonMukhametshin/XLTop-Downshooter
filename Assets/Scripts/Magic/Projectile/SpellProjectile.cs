@@ -1,6 +1,4 @@
-using Players;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class SpellProjectile : MonoBehaviour, ISpellProjectile
@@ -8,12 +6,15 @@ public class SpellProjectile : MonoBehaviour, ISpellProjectile
     [SerializeField] private Rigidbody m_rigidbody;
 
     private float m_speed;
-    private bool m_initialized;
-    private Vector3 m_direction;
-    private Vector3 m_targetPosition;
     private float m_targetDistance;
     private float m_traveledDistance;
+
+    private Vector3 m_direction;
+    private Vector3 m_targetPosition;
+
     private IReadOnlyList<IEffect> m_effects;
+
+    private bool m_initialized;
 
     private void OnValidate()
     {
@@ -50,7 +51,9 @@ public class SpellProjectile : MonoBehaviour, ISpellProjectile
         if (!m_initialized) return;
 
         if (other.TryGetComponent<IEffectable>(out var effectable))
+        {
             m_effects.ApplyEffect(effectable);
+        }
 
         m_effects.ApplyEffect(other.GetComponents<IEffectable>());
 

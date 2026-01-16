@@ -58,7 +58,7 @@ public class PreparationSpellView : MonoBehaviour
     private void ShakeContainer()
     {
         m_shakeTween?.Kill();
-    
+        
         var localRotation = m_elementsContainer.localRotation;
 
         m_shakeTween = m_elementsContainer

@@ -31,13 +31,15 @@ public class SpellPreporation
     public bool TryGetSpell(out BaceSpellData spell)
     {
         spell = null;
+
         if(m_elements.Count is 0)
         {
             return false;
         }
+
         foreach(var spellData in m_magicConfig.spellDataBase.spells)
         {
-            if (ISMatchingConmination(spellData.combination))
+            if (IsMatchingCombination(spellData.combination))
             {
                 spell = spellData;
                 return true;
@@ -47,7 +49,7 @@ public class SpellPreporation
         return false;
     }
 
-    private bool ISMatchingConmination(IReadOnlyList<ElementType> combination)
+    private bool IsMatchingCombination(IReadOnlyList<ElementType> combination)
     {
         if(combination.Count != m_elements.Count)
         {

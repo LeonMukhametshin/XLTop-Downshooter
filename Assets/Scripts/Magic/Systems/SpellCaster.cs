@@ -4,9 +4,10 @@ using UnityEngine.Pool;
 
 public sealed class SpellCaster
 {
-    private readonly bool m_isSingelSpell;
     private readonly Transform m_casterTransform;
     private ObjectPool<GameObject> m_visualEffectPool;
+
+    private readonly bool m_isSingelSpell;
 
     public SpellCaster(Transform casterTransformer, bool isSingelSpell = false)
     {
@@ -87,7 +88,6 @@ public sealed class SpellCaster
         SetLayer(aoe);
         aoe.transform.position = worldPosition;
 
-
         var spellAoe =
             aoe.GetComponent<ISpellAoe>() ??
             aoe.AddComponent<SpellAoe>();
@@ -98,6 +98,6 @@ public sealed class SpellCaster
             UnityEngine.Object.Instantiate(spell.visualEffect, m_casterTransform.position, Quaternion.identity);
     }
 
-    private void SetLayer(UnityEngine.GameObject visualEffect) =>
+    private void SetLayer(GameObject visualEffect) =>
         visualEffect.layer = m_casterTransform.gameObject.layer;
 }

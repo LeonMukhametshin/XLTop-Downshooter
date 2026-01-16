@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicSystem : MonoBehaviour
+public partial class MagicSystem : MonoBehaviour
 {
     public event Action<MagicState> StateChanged;
     public event Action SpellCanceled;
@@ -112,13 +112,5 @@ public class MagicSystem : MonoBehaviour
         {
             CancelSpell();
         }
-    }
-
-    public enum MagicState
-    {
-        Idle,
-        Preporation,
-        Cooldown,
-        Casting
     }
 }
