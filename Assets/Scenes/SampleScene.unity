@@ -2104,6 +2104,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4745453544393517737, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6698085226568495546, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2124,6 +2128,10 @@ PrefabInstance:
       propertyPath: m_mouseResolver
       value: 
       objectReference: {fileID: 660118636}
+    - target: {fileID: 7746102380051187642, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9083465035341639683, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
       propertyPath: m_mouseResolver
       value: 
