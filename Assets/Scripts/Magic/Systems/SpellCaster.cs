@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -68,7 +69,7 @@ public sealed class SpellCaster
 
     private void CastAoe(AoeSpellData spell, Vector3 worldPosition) 
     {
-        GameObject aoe;
+        GameObject aoe = null;
 
         if(m_isSingelSpell)
         {
@@ -76,7 +77,7 @@ public sealed class SpellCaster
                 () => Create(),
                 gm => gm.SetActive(true),
                 gm => gm.SetActive(false),
-                Object.Destroy());
+                UnityEngine.Object.Destroy);
         }
         else
         {
@@ -94,7 +95,7 @@ public sealed class SpellCaster
         spellAoe.Initialize(worldPosition, spell.radius, spell.effects);
 
         GameObject Create() =>
-            UnityEngine.Object.Instantiate(spell.visualEffect, m_casterTransform.position, Quaternion.identity)
+            UnityEngine.Object.Instantiate(spell.visualEffect, m_casterTransform.position, Quaternion.identity);
     }
 
     private void SetLayer(UnityEngine.GameObject visualEffect) =>
