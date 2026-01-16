@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 4928360813168261784}
   - component: {fileID: 8334831152806026319}
   - component: {fileID: 7000184360664698256}
+  - component: {fileID: 2087362175118437274}
   m_Layer: 6
   m_Name: HP Bar
   m_TagString: Untagged
@@ -343,6 +344,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2087362175118437274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996272874548533235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa5137fe728b6e04184fc7c2b11644c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Enemies.Views.HealthBarView
+  m_bar: {fileID: 5990746628961904780}
+  m_healthComponent: {fileID: 8685094700522250200}
 --- !u!1 &2775524311702221945
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +554,7 @@ GameObject:
   - component: {fileID: 7379310458929605894}
   - component: {fileID: 9083465035341639683}
   - component: {fileID: 7469625908855406850}
+  - component: {fileID: 8685094700522250200}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -678,6 +694,7 @@ MonoBehaviour:
     m_element2Key: 37
     m_element3Key: 19
     m_element4Key: 32
+  m_health: {fileID: 0}
 --- !u!114 &9083465035341639683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,6 +730,18 @@ MonoBehaviour:
   - {fileID: 5556830946310725576}
   m_shakeIntensity: 20
   m_shakeDuration: 1
+--- !u!114 &8685094700522250200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079516027687170321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04c841a38c8e7e4cb11d98eb01045b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
 --- !u!1 &4935533625611664900
 GameObject:
   m_ObjectHideFlags: 0

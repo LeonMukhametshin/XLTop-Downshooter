@@ -202,7 +202,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -1892,6 +1892,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661c2e7a8ba434b469912b14d7e9af78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Players.PlayerMovement
+--- !u!114 &2026275396 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8685094700522250200, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
+  m_PrefabInstance: {fileID: 8783034408180062342}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04c841a38c8e7e4cb11d98eb01045b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
 --- !u!1 &2112246502
 GameObject:
   m_ObjectHideFlags: 0
@@ -2104,10 +2115,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4745453544393517737, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6698085226568495546, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2125,13 +2132,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7379310458929605894, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
+      propertyPath: m_health
+      value: 
+      objectReference: {fileID: 2026275396}
+    - target: {fileID: 7379310458929605894, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
       propertyPath: m_mouseResolver
       value: 
       objectReference: {fileID: 660118636}
-    - target: {fileID: 7746102380051187642, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9083465035341639683, guid: 6bad5253e72bef641b6a3729b0c24a46, type: 3}
       propertyPath: m_mouseResolver
       value: 

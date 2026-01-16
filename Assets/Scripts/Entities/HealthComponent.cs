@@ -9,6 +9,8 @@ public class HealthComponent : MonoBehaviour, IHealth, IEffectable
     private float m_value;
     private bool m_isInitialize = false;
 
+    public float maxValue { get; private set; }
+
     public float value
     {
         get => m_value;
@@ -34,7 +36,8 @@ public class HealthComponent : MonoBehaviour, IHealth, IEffectable
         if (m_isInitialize)
             throw new InvalidOperationException("HealthComponent is already initialize");
 
-        m_value = value;
+        this.value = value;
+        maxValue = value;
         m_isInitialize = true;  
     }
 
