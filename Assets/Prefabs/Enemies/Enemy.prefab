@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 119319374193852432}
   - component: {fileID: 7159937531589410554}
   - component: {fileID: 4143119483047945116}
+  - component: {fileID: 2954590180209890279}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -193,6 +194,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   m_agent: {fileID: 4159402544392234318}
+--- !u!114 &2954590180209890279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234671877108634567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea02ef8a7c173843b0b52c47cf05757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuffContainer
 --- !u!1001 &7559062256291089703
 PrefabInstance:
   m_ObjectHideFlags: 0
