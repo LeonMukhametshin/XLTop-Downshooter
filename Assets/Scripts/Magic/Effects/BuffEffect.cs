@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -14,7 +13,7 @@ public class BuffEffect : IEffect
         {
             foreach (var buff in m_buff)
             {
-                container.Add(buff.Clone() as IBuff);
+                container.Add(buff.Clone());
             }
         }
     }

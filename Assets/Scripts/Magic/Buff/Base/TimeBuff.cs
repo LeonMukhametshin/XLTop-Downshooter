@@ -8,7 +8,7 @@ public abstract class TimeBuff : BaseBuff
     [NonSerialized] private float m_timer;
 
     protected float duration => m_duration;
-    public string Id { get; }
+    public string id { get; }
 
     protected TimeBuff(string id, float duration) 
         : base(id)

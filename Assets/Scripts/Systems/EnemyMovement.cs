@@ -1,12 +1,15 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyMovement : MonoBehaviour 
+public class EnemyMovement : MonoBehaviour, IAcceleration
 {
     [SerializeField] private NavMeshAgent m_agent;
 
     private Transform m_target;
+    private float m_speed;
+    private float m_acceleration;
     private bool m_isMoving;
     private bool m_isInitilized;
 
@@ -20,9 +23,32 @@ public class EnemyMovement : MonoBehaviour
 
     public void Initialize(float speed, Transform target)
     {
-        m_target = target;
+        m_speed = speed;
         m_agent.speed = speed;
+        m_target = target;
         m_isInitilized = true;
+    }
+
+    public void IncreaseAcceleration(float delta)
+    {
+        if (delta < 0)
+        {
+            throw new ArgumentException("Delta can`t be negative", nameof(delta));
+        }
+
+        m_acceleration += delta;
+        SetSpeed();
+    }
+
+    public void DecreaseAcceleration(float delta)
+    {
+        if (delta < 0)
+        {
+            throw new ArgumentException("Delta can`t be negative", nameof(delta));
+        }
+
+        m_acceleration -= delta;
+        SetSpeed();
     }
 
     private void Update()
@@ -56,5 +82,14 @@ public class EnemyMovement : MonoBehaviour
         m_isMoving = false;
         m_agent.isStopped = true;
         m_agent.velocity = Vector3.zero;
+    }
+
+    private void SetSpeed()
+    {
+        var acceleration = m_acceleration > 0
+            ? m_acceleration
+            : 1;
+
+        m_agent.speed = m_speed * acceleration;
     }
 }

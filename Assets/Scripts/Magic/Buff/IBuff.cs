@@ -1,6 +1,4 @@
-using System;
-
-public interface IBuff : ICloneable
+public interface IBuff
 {
     public string Id { get; }
 
@@ -8,4 +6,6 @@ public interface IBuff : ICloneable
     public void Deinitialize();
 
     public void Update(float deltaTime);
+
+    public IBuff Clone();
 }   

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 namespace Players
 {
     [RequireComponent (typeof(NavMeshAgent))]
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IAcceleration
     {
         public event Action Stopped;
         public event Action<Vector3> DestinationChanged;
@@ -13,6 +13,7 @@ namespace Players
         [SerializeField] private NavMeshAgent m_agent;
 
         private float m_speed;
+        private float m_acceleration;
         private float m_angularSpeed;
         private bool m_hasDestination;
 
@@ -53,6 +54,28 @@ namespace Players
             m_agent.updateRotation = false;
         }
 
+        public void IncreaseAcceleration(float delta)
+        {
+            if(delta < 0)
+            {
+                throw new ArgumentException("Delta can`t be negative", nameof(delta));
+            }
+
+            m_acceleration += delta;
+            SetSpeed();
+        }
+
+        public void DecreaseAcceleration(float delta)
+        {
+            if (delta < 0)
+            {
+                throw new ArgumentException("Delta can`t be negative", nameof(delta));
+            }
+
+            m_acceleration -= delta;
+            SetSpeed();
+        }
+
         public void SetDestination(Vector3 navMeshPoint)
         {
             m_agent.SetDestination(navMeshPoint);
@@ -73,6 +96,15 @@ namespace Players
 
             var transfromRotate = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, transfromRotate, m_agent.angularSpeed * Time.deltaTime);
+        }
+
+        private void SetSpeed()
+        {
+            var acceleration = m_acceleration > 0
+                ? m_acceleration
+                : 1;
+
+            m_agent.speed = m_speed * acceleration;
         }
     }
 }

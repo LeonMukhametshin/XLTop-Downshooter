@@ -11,6 +11,7 @@ public class BuffContainer : MonoBehaviour, IEffectable
         foreach(var buff in m_buffs.Values)
         {
             buff.Update(Time.deltaTime);
+            //m_ids.Remove(m_buffs.Values);
         }
 
         foreach(var id in m_ids)

@@ -52,6 +52,6 @@ public sealed class PoisonDeBuff : TimeBuff
         }
     }
 
-    public override void Clone() =>
-        new PoisonDeBuff(Id, duration ,m_interval, m_damagePerSeconds);
+    public override IBuff Clone() =>
+        new PoisonDeBuff(id, duration ,m_interval, m_damagePerSeconds);
 }
