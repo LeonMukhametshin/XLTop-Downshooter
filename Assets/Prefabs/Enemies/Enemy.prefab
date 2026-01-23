@@ -214,6 +214,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1073496724402847346}
     m_Modifications:
+    - target: {fileID: 294043535911099111, guid: 0343d954159ac9042822f4da0a7c6828, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 294043535911099111, guid: 0343d954159ac9042822f4da0a7c6828, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 294043535911099111, guid: 0343d954159ac9042822f4da0a7c6828, type: 3}
+      propertyPath: m_Color.r
+      value: 0.94698524
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797040133501408389, guid: 0343d954159ac9042822f4da0a7c6828, type: 3}
+      propertyPath: m_buffView
+      value: 
+      objectReference: {fileID: 2981145872634524044, guid: 016a39674b14862449f40036038fdf73, type: 3}
+    - target: {fileID: 2797040133501408389, guid: 0343d954159ac9042822f4da0a7c6828, type: 3}
+      propertyPath: m_deBuffView
+      value: 
+      objectReference: {fileID: 1871586125719090103, guid: 8046505b6b8c1e447b270f292d4e5089, type: 3}
+    - target: {fileID: 2797040133501408389, guid: 0343d954159ac9042822f4da0a7c6828, type: 3}
+      propertyPath: m_buffContainer
+      value: 
+      objectReference: {fileID: 2954590180209890279}
     - target: {fileID: 4023509735950814719, guid: 0343d954159ac9042822f4da0a7c6828, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

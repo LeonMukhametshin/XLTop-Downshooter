@@ -2,29 +2,38 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public abstract class TimeBuff : BaseBuff
+public abstract class TimeBuff : BaseBuff, ITimeBuff
 {
     [SerializeField] private float m_duration;
-    [NonSerialized] private float m_timer;
 
-    protected float duration => m_duration;
-    public string id { get; }
+    public float duration => m_duration;
 
-    protected TimeBuff(string id, float duration) 
-        : base(id)
+    [field: NonSerialized] 
+    private float timer { get; }
+
+    public TimeBuff() { }
+
+    protected TimeBuff(string id, Sprite icon, BuffType type, float duration) 
+        : base(id, icon, type)
     {
         m_duration = duration;
     }
 
+    protected override void OnInitialize()
+    {
+        timer = m_duration;
+        base.OnInitialize();
+    }
+
     protected override void OnDeinitializing() =>
-        m_timer = 0;
+        timer = 0;
 
     public sealed override void Update(float deltaTime)
     {
-        if(m_timer < m_duration)
+        if(timer > m_duration)
         {
             OnUpdated(deltaTime);
-            m_timer += deltaTime;
+            timer -= deltaTime;
         }
         else
         {

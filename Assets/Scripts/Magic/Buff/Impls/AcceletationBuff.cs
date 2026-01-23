@@ -9,10 +9,13 @@ public class AcceletationBuff : TimeBuff
     private IAcceleration m_acceleration;
 
     public AcceletationBuff(
-        string id, 
+        string id,
+        Sprite icon,
+        BuffType type,
         float duration,
-        float value) :
-        base(id, duration)
+        float value
+        ) :
+        base(id, icon, type, duration)
     {
         m_value = value;
     }
@@ -45,5 +48,5 @@ public class AcceletationBuff : TimeBuff
     }
 
     public override IBuff Clone() =>
-        new AcceletationBuff(id, duration, m_value);
+        new AcceletationBuff(id, icon, type, duration, m_value);
 }

@@ -11,10 +11,12 @@ public sealed class PoisonDeBuff : TimeBuff
     private IHealth m_health;
 
     public PoisonDeBuff(
-        string id, 
+        string id,
+        Sprite sprite,
+        BuffType type,
         float duration,
         float interval,
-        float damagePerSeconds) : base(id, duration)
+        float damagePerSeconds) : base(id, sprite, type, duration)
     {
         m_interval = interval;
         m_damagePerSeconds = damagePerSeconds;
@@ -53,5 +55,5 @@ public sealed class PoisonDeBuff : TimeBuff
     }
 
     public override IBuff Clone() =>
-        new PoisonDeBuff(id, duration ,m_interval, m_damagePerSeconds);
+        new PoisonDeBuff(id, icon, type, duration, m_interval, m_damagePerSeconds);
 }

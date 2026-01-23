@@ -4,15 +4,21 @@ using UnityEngine;
 [Serializable]
 public abstract class BaseBuff : IBuff
 {
-    [field: SerializeField] public string Id { get; private set; }
+    [field: SerializeField] public string id { get; private set; }
 
     protected BuffContainer container { get; private set; }
 
+    public Sprite icon { get; private set; }
+
+    public BuffType type { get; private set; }
+
     public BaseBuff() { }
 
-    public BaseBuff(string id)
+    public BaseBuff(string id, Sprite icon, BuffType type)
     {
-        Id = id;
+        this.id = id;
+        this.icon = icon;
+        this.type = type;
     }
 
     public void Intitialize(BuffContainer container)

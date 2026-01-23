@@ -24,10 +24,10 @@ MonoBehaviour:
       type: {class: BuffEffect, ns: , asm: Assembly-CSharp}
       data:
         m_buff:
-        - rid: 8185653495229317185
-    - rid: 8185653495229317185
+        - rid: 8185653495229317188
+    - rid: 8185653495229317188
       type: {class: AcceletationBuff, ns: , asm: Assembly-CSharp}
       data:
-        <Id>k__BackingField: Acceleration Buff
-        m_duration: 5
-        m_value: 10
+        <id>k__BackingField: 
+        m_duration: 2
+        m_value: 1.5
