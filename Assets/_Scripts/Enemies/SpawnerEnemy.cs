@@ -8,12 +8,6 @@ public class SpawnerEnemy : MonoBehaviour
     [SerializeField] private Transform[] m_spawnPoints;
     [SerializeField] private Transform m_playerTransfrom;
 
-    //TODO Remove
-    private void Start()
-    {
-        Spawn();
-    }
-
     public void Spawn()
     {
         foreach(var point in m_spawnPoints)
