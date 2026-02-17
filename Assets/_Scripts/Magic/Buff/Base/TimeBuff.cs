@@ -9,7 +9,7 @@ public abstract class TimeBuff : BaseBuff, ITimeBuff
     public float duration => m_duration;
 
     [field: NonSerialized] 
-    private float timer { get; }
+    public float timer { get; private set; }
 
     public TimeBuff() { }
 

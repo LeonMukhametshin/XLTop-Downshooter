@@ -13,10 +13,6 @@ public class Enemy : MonoBehaviour
     private Transform m_playerTransfrom;
     private EnemyStateMachine m_stateMachine;
 
-    //TODO add HealthComponent
-    //TODO add Movement
-    //TODO add AttackComponent
-
     private void Awake()
     {
         m_stateMachine = new EnemyStateMachine();
@@ -49,7 +45,7 @@ public class Enemy : MonoBehaviour
         m_data = data;
         m_playerTransfrom = playerTransfrom;
         m_healthComponent.Initialize(data.health);
-        m_attackEnemySystem.Initialize(data.spellData, playerTransfrom, data.attackTime);
+        m_attackEnemySystem.Initialize(data.defaultSpell, data.spell, playerTransfrom, data.attackTime);
         m_movement.Initialize(data.speed, playerTransfrom);
 
         m_stateMachine ??= new EnemyStateMachine();
