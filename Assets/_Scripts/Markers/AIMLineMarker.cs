@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class AIMLineMarker : MonoBehaviour
 {
-    [SerializeField] private Transform m_playerTransfrom;
     [SerializeField] private LineRenderer m_lineRenderer;
     [SerializeField] private MouseResolver m_mouseResolver;
 
@@ -11,6 +10,8 @@ public class AIMLineMarker : MonoBehaviour
     [SerializeField] private float m_lineWidth = 0.1f;
     [SerializeField] private float m_disableDistance = 1f;
 
+    private Transform m_playerTransfrom;
+    
     private void OnValidate()
     {
         if(!m_lineRenderer)
@@ -28,6 +29,11 @@ public class AIMLineMarker : MonoBehaviour
 
     private void LateUpdate()
     {
+        if(m_playerTransfrom is null)
+        {
+            return;
+        }
+
         var playerPosition = m_playerTransfrom.position;
         var end = GetAimPosition();
 
@@ -40,6 +46,11 @@ public class AIMLineMarker : MonoBehaviour
         m_lineRenderer.SetPosition(index: 0, start);
         m_lineRenderer.SetPosition(index: 1, end);
         m_lineRenderer.enabled = Vector3.Distance(start, end) > m_disableDistance;
+    }
+
+    public void Initialize(Transform playerTransfrom)
+    {
+        m_playerTransfrom = playerTransfrom;
     }
 
     private Vector3 GetAimPosition()

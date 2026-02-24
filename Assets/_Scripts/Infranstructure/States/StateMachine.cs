@@ -1,7 +1,9 @@
 using Assets._Scripts.Infranstructure.States;
-using System.Collections.Generic;
 using Assets._Scripts.UI;
+using Cameras;
+using Players;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets._Scripts.Infranstructure.States
@@ -97,42 +99,79 @@ public class PauseMenuState : IState
 public class DeadState : IState
 {
     private StateMachine m_stateMachine;
+    private DeadMenuView m_deadMenuView;
 
-    public DeadState(StateMachine stateMachine)
+    public DeadState(StateMachine stateMachine,
+        DeadMenuView deadMenuView)
     {
         m_stateMachine = stateMachine;
+        m_deadMenuView = deadMenuView;
+
+        m_deadMenuView.gameObject.SetActive(false);
     }
 
     public void Enter()
     {
-
+        m_deadMenuView.goToMenuClicked += OnGoToMenuClicked;
+        m_deadMenuView.gameObject.SetActive(true);
     }
 
     public void Exit()
     {
+        m_deadMenuView.goToMenuClicked -= OnGoToMenuClicked;
+        m_deadMenuView.gameObject.SetActive(false);
+    }
 
+    private void OnGoToMenuClicked()
+    {
+        m_stateMachine.ChangeState<MainMenuState>();
     }
 }
 
 public class GameplayState : IState
 {
-    private StateMachine m_stateMachine;
-    private SpawnerEnemy m_spawnerEnemy;
+    private readonly StateMachine m_stateMachine;
+    private readonly SpawnerEnemy m_spawnerEnemy;
+    private readonly TargetMarkerObserver m_targetMarkerObserver;
+    private readonly AIMLineMarker m_aimLineMarker;
+    private readonly CameraFollow m_cameraFollower;
+    private PlayerController m_playerController;
 
-    public GameplayState(StateMachine stateMachine,
+    public GameplayState(
+        AIMLineMarker aIMLineMarker,
+        CameraFollow cameraFollow,
+        TargetMarkerObserver targetMarkerObserver,
+        StateMachine stateMachine,
         SpawnerEnemy enemy)
     {
         m_stateMachine = stateMachine;
         m_spawnerEnemy = enemy;
+        m_targetMarkerObserver = targetMarkerObserver;
+        m_aimLineMarker = aIMLineMarker;
+        m_cameraFollower = cameraFollow;
     }
 
     public void Enter()
     {
+        var playerPosition = ServiceLocator.Resolved<PlayerSpawnpoint>();
+        ServiceLocator.Resolved<IPlayerFactorySettings>().position = playerPosition.transform.position;
+        m_playerController = ServiceLocator.Resolved<PlayerFactory>().Create();
+
+        m_targetMarkerObserver.Initialize(m_playerController.GetComponent<PlayerMovement>());
+        m_aimLineMarker.Initialize(m_playerController.transform);
+        m_cameraFollower.SetTarget(playerPosition.transform);
+
         m_spawnerEnemy.Spawn();
+        m_playerController.healh.died += OnDied;
     }
 
     public void Exit()
     {
+        m_playerController.healh.died -= OnDied;
+    }
 
+    private void OnDied()
+    {
+        m_stateMachine.ChangeState<DeadState>();
     }
 }
