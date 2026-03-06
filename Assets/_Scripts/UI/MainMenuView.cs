@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Assets._Scripts.UI
@@ -11,6 +10,7 @@ namespace Assets._Scripts.UI
         public event Action playClicked;
         public event Action exitClicked;
 
+        private Loading m_loading;
         [SerializeField] private Button m_playerButton;
         [SerializeField] private Button m_exitButton;
 
@@ -26,14 +26,21 @@ namespace Assets._Scripts.UI
             m_exitButton.onClick.RemoveListener(OnExitClicked);
         }
 
+        private void Start()
+        {
+            m_loading = ServiceLocator.Resolved<Loading>();
+        }
+
         private void OnPlayerClicked()
         {
             playClicked?.Invoke();
-            SceneManager.LoadScene(GlobalConstants.Scenes.Game);
+            m_loading.LoadScene(GlobalConstants.Scenes.Game);
         }
    
-        private void OnExitClicked() =>
-             exitClicked?.Invoke();
+        private void OnExitClicked()
+        {
+            Application.Quit();
+        }
     }
 }
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Assets._Scripts.UI;
-using Assets._Scripts.Infranstructure.States;
 using Cameras;
+using StateMachine = Assets._Scripts.Infranstructure.States.StateMachine;
 
 namespace Assets._Scripts.Infranstructure
 {
@@ -14,15 +14,17 @@ namespace Assets._Scripts.Infranstructure
         [SerializeField] private TargetMarkerObserver m_targetMarkerObserver;
         [SerializeField] private AIMLineMarker m_aIMLineMarker;
         [SerializeField] private CameraFollow m_cameraFollow;
+        [SerializeField] private PauseMenuView m_pauseMenuView;
+
+        private StateMachine fsm = new StateMachine();
 
         private void Awake()
         {
-            var fsm = new StateMachine();
             m_boothrapState.Initialize(fsm);
 
             fsm.Initialize(
                 m_boothrapState,
-                new PauseMenuState(fsm),
+                new PauseMenuState(fsm, m_pauseMenuView),
                 new DeadState(fsm, m_deadMenuView),
                 new GameplayState(m_aIMLineMarker, 
                     m_cameraFollow, 
@@ -31,6 +33,11 @@ namespace Assets._Scripts.Infranstructure
                     m_enemySpawner));
 
             fsm.ChangeState<BoothrapState>();            
+        }
+
+        private void Update()
+        {
+            fsm.Update();
         }
     }
 }

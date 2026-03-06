@@ -6,6 +6,7 @@ public class BoothrapState : MonoBehaviour, IState
 {
     [SerializeField] private PlayerSpawnpoint m_spawnPoint;
     [SerializeField] private MouseResolver m_mouseResolver;
+
     private StateMachine m_stateMachine;
 
     public void Initialize(StateMachine stateMachine)
