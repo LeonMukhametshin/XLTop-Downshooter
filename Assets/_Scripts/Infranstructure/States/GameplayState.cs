@@ -1,48 +1,36 @@
 using Assets._Scripts.Infranstructure.States;
 using Cameras;
 using Players;
-using UnityEngine.InputSystem;
+using UnityEngine;
 
 public class GameplayState : IState
 {
     private readonly StateMachine m_stateMachine;
-    private readonly SpawnerEnemy m_spawnerEnemy;
-    private readonly TargetMarkerObserver m_targetMarkerObserver;
-    private readonly AIMLineMarker m_aimLineMarker;
     private readonly CameraFollow m_cameraFollower;
+
     private PlayerController m_playerController;
 
     public GameplayState(
-        AIMLineMarker aIMLineMarker,
         CameraFollow cameraFollow,
-        TargetMarkerObserver targetMarkerObserver,
-        StateMachine stateMachine,
-        SpawnerEnemy enemy)
+        StateMachine stateMachine)
     {
         m_stateMachine = stateMachine;
-        m_spawnerEnemy = enemy;
-        m_targetMarkerObserver = targetMarkerObserver;
-        m_aimLineMarker = aIMLineMarker;
         m_cameraFollower = cameraFollow;
     }
 
     public void Enter()
     {
-        var playerPosition = ServiceLocator.Resolved<PlayerSpawnpoint>();
-        ServiceLocator.Resolved<IPlayerFactorySettings>().position = playerPosition.transform.position;
-        m_playerController = ServiceLocator.Resolved<PlayerFactory>().Create();
+        m_playerController = ServiceLocator
+            .Resolved<IPlayerFactory>()
+            .Create();
 
-        m_targetMarkerObserver.Initialize(m_playerController.GetComponent<PlayerMovement>());
-        m_aimLineMarker.Initialize(m_playerController.transform);
-        m_cameraFollower.SetTarget(playerPosition.transform);
-
-        m_spawnerEnemy.Spawn();
+        m_cameraFollower.SetTarget(m_playerController.transform);
         m_playerController.healh.died += OnDied;
     }
 
     public void Update()
     {
-        if(Keyboard.current(Key.Escape).wasPressedThisFrame)
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             m_stateMachine.ChangeState<PauseMenuState>();
         }
@@ -51,6 +39,7 @@ public class GameplayState : IState
     public void Exit()
     {
         m_playerController.healh.died -= OnDied;
+        m_playerController = null;
     }
 
     private void OnDied()

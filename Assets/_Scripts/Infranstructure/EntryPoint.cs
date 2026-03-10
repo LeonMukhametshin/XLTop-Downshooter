@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets._Scripts.Infranstructure.States;
 using Assets._Scripts.UI;
 using Cameras;
+using UnityEngine;
 using StateMachine = Assets._Scripts.Infranstructure.States.StateMachine;
 
 namespace Assets._Scripts.Infranstructure
@@ -26,10 +27,11 @@ namespace Assets._Scripts.Infranstructure
                 m_boothrapState,
                 new PauseMenuState(fsm, m_pauseMenuView),
                 new DeadState(fsm, m_deadMenuView),
-                new GameplayState(m_aIMLineMarker, 
+                new GameplayEntryState(fsm,
+                    m_enemySpawner,
+                    m_aIMLineMarker,
+                    m_targetMarkerObserver,
                     m_cameraFollow, 
-                    m_targetMarkerObserver, 
-                    fsm, 
                     m_enemySpawner));
 
             fsm.ChangeState<BoothrapState>();            

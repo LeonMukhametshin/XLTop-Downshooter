@@ -5,7 +5,7 @@ public class PauseMenuState : IState
 {
     private StateMachine m_stateMachine;
     private PauseMenuView m_pauseMenu;
-    private Loading m_loading;
+    
 
     public PauseMenuState(
         StateMachine stateMachine,
@@ -13,7 +13,7 @@ public class PauseMenuState : IState
     {
         m_stateMachine = stateMachine;
         m_pauseMenu = pauseMenuView;
-        m_loading =ServiceLocator.Resolved<Loading>();
+      
     }
 
     public void Enter()
@@ -35,7 +35,6 @@ public class PauseMenuState : IState
 
     private void OnMainMenuClicked()
     {
-        Exit();
-        m_loading.LoadScene(GlobalConstants.Scenes.Main);
+        m_stateMachine.ChangeState<GameplayerExitState>();
     }
 }
