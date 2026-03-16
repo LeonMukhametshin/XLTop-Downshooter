@@ -48,15 +48,12 @@ public class SpellProjectile : MonoBehaviour, ISpellProjectile
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!m_initialized) return;
-
-        if (other.TryGetComponent<IEffectable>(out var effectable))
+        if (!m_initialized)
         {
-            m_effects.ApplyEffect(effectable);
+            return;
         }
 
-        m_effects.ApplyEffect(other.GetComponents<IEffectable>());
-
+        m_effects.ApplyEffect(other.gameObject.GetComponents<IEffectable>());
         Destroy(gameObject);
     }
 

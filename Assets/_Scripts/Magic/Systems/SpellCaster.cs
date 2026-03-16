@@ -66,7 +66,10 @@ public sealed class SpellCaster
         spellProjectile.Initialize(worldPosition, spell.speed, spell.effects);
     }
 
-    private void CastNonTarget(NonTargetSpellData selfSpell) { }
+    private void CastNonTarget(NonTargetSpellData selfSpell) 
+    {
+        // Everyone forgot about me((
+    }
 
     private void CastAoe(AoeSpellData spell, Vector3 worldPosition) 
     {

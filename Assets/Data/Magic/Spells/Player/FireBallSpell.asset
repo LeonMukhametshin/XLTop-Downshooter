@@ -15,4 +15,13 @@ MonoBehaviour:
   m_spellName: FireBall
   m_visualEffect: {fileID: 1587250918974726, guid: e9e9458c34ca3044d87b5f69ebf36957, type: 3}
   m_combination: 00000000
+  m_effects:
+  - rid: 47934686023385152
   m_speed: 20
+  references:
+    version: 2
+    RefIds:
+    - rid: 47934686023385152
+      type: {class: AttackEffect, ns: , asm: Assembly-CSharp}
+      data:
+        m_damage: 20

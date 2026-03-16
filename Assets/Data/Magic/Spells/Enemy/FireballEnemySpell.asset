@@ -16,12 +16,12 @@ MonoBehaviour:
   m_visualEffect: {fileID: 1587250918974726, guid: 2fdca6ef057dc584390e86cafec21774, type: 3}
   m_combination: 00000000
   m_effects:
-  - rid: 8185653428025557055
+  - rid: 47934686023385154
   m_speed: 10
   references:
     version: 2
     RefIds:
-    - rid: 8185653428025557055
-      type: {class: BuffEffect, ns: , asm: Assembly-CSharp}
+    - rid: 47934686023385154
+      type: {class: AttackEffect, ns: , asm: Assembly-CSharp}
       data:
-        m_buff: []
+        m_damage: 30

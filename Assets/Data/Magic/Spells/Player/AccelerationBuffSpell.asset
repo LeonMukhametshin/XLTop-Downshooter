@@ -28,6 +28,6 @@ MonoBehaviour:
     - rid: 8185653495229317188
       type: {class: AcceletationBuff, ns: , asm: Assembly-CSharp}
       data:
-        <id>k__BackingField: 
+        <id>k__BackingField: 'Acceleration Buff '
         m_duration: 2
         m_value: 1.5

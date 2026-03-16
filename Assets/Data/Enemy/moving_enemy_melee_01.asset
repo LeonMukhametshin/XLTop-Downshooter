@@ -20,6 +20,6 @@ MonoBehaviour:
   <attackRange>k__BackingField: 2
   m_spells:
   - data: {fileID: 11400000, guid: 792ed17995bec3e4b88ff0f683a8ab76, type: 2}
-    count: 0
+    count: 1
   - data: {fileID: 11400000, guid: 792ed17995bec3e4b88ff0f683a8ab76, type: 2}
-    count: 0
+    count: 2

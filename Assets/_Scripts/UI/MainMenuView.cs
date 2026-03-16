@@ -35,10 +35,8 @@ namespace Assets._Scripts.UI
             playClicked?.Invoke();
             m_loading.LoadScene(GlobalConstants.Scenes.Game);
         }
-   
-        private void OnExitClicked()
-        {
+
+        private void OnExitClicked() => 
             Application.Quit();
-        }
     }
 }

@@ -48,20 +48,15 @@ public class AIMLineMarker : MonoBehaviour
         m_lineRenderer.enabled = Vector3.Distance(start, end) > m_disableDistance;
     }
 
-    public void Initialize(Transform playerTransfrom)
-    {
+    public void Initialize(Transform playerTransfrom) => 
         m_playerTransfrom = playerTransfrom;
-    }
 
     private Vector3 GetAimPosition()
     {
         var worldPosition = m_mouseResolver.GetCursoureWorldPosition();
 
-        if(worldPosition.HasValue)
-        {
-            return worldPosition.Value;
-        }
-
-        return m_playerTransfrom.position + m_playerTransfrom.forward;
+        return worldPosition.HasValue 
+            ? worldPosition.Value 
+            : m_playerTransfrom.position + m_playerTransfrom.forward;
     }
 }

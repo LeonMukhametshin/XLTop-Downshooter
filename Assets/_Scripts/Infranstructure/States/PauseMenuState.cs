@@ -28,13 +28,13 @@ public class PauseMenuState : IState
     {
         Time.timeScale = 1f;
         m_pauseMenu.gameObject.SetActive(true);
+        m_pauseMenu.continueClicked -= OnContinueCkicked;
+        m_pauseMenu.mainMenuClicked -= OnMainMenuClicked;
     }
 
     private void OnContinueCkicked() => 
         m_stateMachine.ChangeState<MainMenuState>();
 
-    private void OnMainMenuClicked()
-    {
-        m_stateMachine.ChangeState<GameplayerExitState>();
-    }
+    private void OnMainMenuClicked() => 
+        m_stateMachine.ChangeState<GameplayExitState>();
 }

@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   <enemyType>k__BackingField: 0
   health: 50
-  <speed>k__BackingField: 0
-  <attackTime>k__BackingField: 0
+  <defaultSpell>k__BackingField: {fileID: 11400000, guid: f2946c0078b7a2b4da7497057c94e74d, type: 2}
+  <speed>k__BackingField: 20
+  <attackTime>k__BackingField: 3
   <attackRange>k__BackingField: 10
-  <spellData>k__BackingField: {fileID: 11400000, guid: 792ed17995bec3e4b88ff0f683a8ab76, type: 2}
+  m_spells:
+  - data: {fileID: 11400000, guid: 1370ca09f2363ec498b611c03db7c270, type: 2}
+    count: 1

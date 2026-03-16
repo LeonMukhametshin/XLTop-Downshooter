@@ -2,24 +2,24 @@ using System;
 
 public class EnemyStateMachine 
 {
-    public EnemyState CurrentState {  get; private set; }
-    public event Action<EnemyState, EnemyState> StateChanged;
+    public EnemyState currentState {  get; private set; }
+    public event Action<EnemyState, EnemyState> stateChanged;
 
     public EnemyStateMachine()
     {
-        CurrentState = EnemyState.Idle;
+        currentState = EnemyState.Idle;
     }
 
     public void ChangedState(EnemyState nextState)
     {
-        if(CurrentState == nextState || CurrentState is EnemyState.Dead)
+        if(currentState == nextState || currentState is EnemyState.Dead)
         {
             return;
         }
 
-        var previousState = CurrentState;
-        CurrentState = nextState;
+        var previousState = currentState;
+        currentState = nextState;
 
-        StateChanged?.Invoke(previousState, nextState);
+        stateChanged?.Invoke(previousState, nextState);
     }
 }

@@ -9,25 +9,20 @@ public class BoothrapState : MonoBehaviour, IState
 
     private StateMachine m_stateMachine;
 
-    public void Initialize(StateMachine stateMachine)
-    {
+    public void Initialize(StateMachine stateMachine) => 
         m_stateMachine = stateMachine;
-    }
 
     public void Enter()
     {
-        var playerFactory = new PlayerFactory("Assets/Resources/Prefabs/Player");
+        var playerFactory = new PlayerFactory("Prefabs/Player");
 
         ServiceLocator.Register(m_spawnPoint);
         ServiceLocator.Register<IPlayerFactory>(playerFactory);
         ServiceLocator.Register<IPlayerFactorySettings>(playerFactory);
-        
+
         ServiceLocator.Register<MouseResolver>(m_mouseResolver);
-        m_stateMachine.ChangeState<GameplayState>();
+        m_stateMachine.ChangeState<GameplayEntryState>();
     }
 
-    public void Exit()
-    {
-
-    }
+    public void Exit() { }
 }

@@ -23,14 +23,14 @@ public class PreparationSpellView : MonoBehaviour
 
     private void OnEnable()
     {
-        m_magicSystem.ElementChanged += UpdateIcons;
-        m_magicSystem.SpellCanceled += ShakeContainer;
+        m_magicSystem.elementChanged += UpdateIcons;
+        m_magicSystem.spellCanceled += ShakeContainer;
     }
 
     private void OnDisable()
     {
-        m_magicSystem.ElementChanged -= UpdateIcons;
-        m_magicSystem.SpellCanceled -= ShakeContainer;
+        m_magicSystem.elementChanged -= UpdateIcons;
+        m_magicSystem.spellCanceled -= ShakeContainer;
     }
 
     private void UpdateIcons(IReadOnlyList<ElementType> elements)

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public event Action<Enemy> Died;
+    public event Action<Enemy> died;
 
     [SerializeField] private HealthComponent m_healthComponent;
     [SerializeField] private AttackEnemySystem m_attackEnemySystem;
@@ -21,18 +21,18 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         m_healthComponent.died += OnDied;
-        m_stateMachine.StateChanged += OnStateChanged;
+        m_stateMachine.stateChanged += OnStateChanged;
     }
 
     private void OnDisable()
     {
         m_healthComponent.died -= OnDied;
-        m_stateMachine.StateChanged -= OnStateChanged;
+        m_stateMachine.stateChanged -= OnStateChanged;
     }
 
     private void Update()
     {
-        if(m_stateMachine.CurrentState is EnemyState.Dead || !m_data)
+        if(m_stateMachine.currentState is EnemyState.Dead || !m_data)
         {
             return;
         }
@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
     {
         var isInAttackRange = IsInRanged();
 
-        switch(m_stateMachine.CurrentState)
+        switch(m_stateMachine.currentState)
         {
             case EnemyState.Idle: HeandleIdleState(isInAttackRange); break;
             case EnemyState.Move: HeandleMoveState(isInAttackRange); break;
@@ -113,7 +113,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnDied() =>
-        Died?.Invoke(this);
+        died?.Invoke(this);
 
     private void OnStateChanged(EnemyState previousState, EnemyState nextState)
     {

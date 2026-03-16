@@ -34,7 +34,9 @@ public class HealthComponent : MonoBehaviour, IHealth, IEffectable
     public void Initialize(float value)
     {
         if (m_isInitialize)
+        {
             throw new InvalidOperationException("HealthComponent is already initialize");
+        }
 
         this.value = value;
         maxValue = value;
@@ -44,7 +46,9 @@ public class HealthComponent : MonoBehaviour, IHealth, IEffectable
     public void Heal(float heal)
     {
         if (heal < 0)
+        {
             throw new ArgumentOutOfRangeException(nameof(heal), "Heal cannot be hegative");
+        }
 
         value += heal;
     }
@@ -52,8 +56,10 @@ public class HealthComponent : MonoBehaviour, IHealth, IEffectable
     public void TakeDamage(float damage)
     {
         if (damage < 0)
+        {
             throw new ArgumentOutOfRangeException(nameof(damage), "Heal cannot be hegative");
+        }
 
-        value += damage;
+        value -= damage;
     }
 }   

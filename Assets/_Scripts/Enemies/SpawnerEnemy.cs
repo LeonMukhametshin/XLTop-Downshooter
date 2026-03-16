@@ -25,7 +25,7 @@ public class SpawnerEnemy : MonoBehaviour
             var enemyInstance = Instantiate(enemy, point);
             enemyInstance.Initialize(enemyData, playerTransfrom);
 
-            enemy.Died += OnDied;
+            enemy.died += OnDied;
 
             m_currentEnemies.Add(enemy);
         }
@@ -55,7 +55,10 @@ public class SpawnerEnemy : MonoBehaviour
 
     private void DestroyEnemy(Enemy enemy)
     {
-        enemy.Died -= OnDied;
-        Destroy(enemy.gameObject);
+        if (enemy)
+        {
+            enemy.died -= OnDied;
+            Destroy(enemy.gameObject);
+        }
     }
 }

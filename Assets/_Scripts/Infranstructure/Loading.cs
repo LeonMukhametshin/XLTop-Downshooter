@@ -33,12 +33,12 @@ public class Loading : MonoBehaviour
         m_loading.fillAmount = 0;
 
         const float maxProgress = 0.5f;
-        const float steps = 10f;
+        const float steps = 8f;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
         for (var i = 0; i < steps; i++)
         {
-            yield return new WaitForSecondsRealtime(0.5f);
+            yield return new WaitForSecondsRealtime(0.3f);
 
             m_loading.fillAmount += maxProgress / steps;
         }

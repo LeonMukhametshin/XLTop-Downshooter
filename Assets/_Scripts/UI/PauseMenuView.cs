@@ -23,13 +23,9 @@ public sealed class PauseMenuView : MonoBehaviour
         m_mainMenu.onClick.RemoveListener(OnMainMenuClicked);
     }
 
-    private void OnContinueClicked()
-    {
+    private void OnContinueClicked() => 
         continueClicked?.Invoke();
-    }
-    private void OnMainMenuClicked()
-    {
-        mainMenuClicked?.Invoke();
-    }
 
+    private void OnMainMenuClicked() => 
+        mainMenuClicked?.Invoke();
 }

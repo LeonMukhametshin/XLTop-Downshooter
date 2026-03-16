@@ -11,4 +11,3 @@ public class Boothrap : MonoBehaviour
         ServiceLocator.Register(m_loading);
     }
 }
-

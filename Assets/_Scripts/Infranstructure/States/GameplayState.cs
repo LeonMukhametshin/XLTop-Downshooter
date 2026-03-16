@@ -1,49 +1,49 @@
-using Assets._Scripts.Infranstructure.States;
 using Cameras;
 using Players;
-using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class GameplayState : IState
+namespace Assets._Scripts.Infranstructure.States
 {
-    private readonly StateMachine m_stateMachine;
-    private readonly CameraFollow m_cameraFollower;
-
-    private PlayerController m_playerController;
-
-    public GameplayState(
-        CameraFollow cameraFollow,
-        StateMachine stateMachine)
+    public class GameplayState : IState
     {
-        m_stateMachine = stateMachine;
-        m_cameraFollower = cameraFollow;
-    }
+        private readonly StateMachine m_stateMachine;
+        private readonly CameraFollow m_cameraFollower;
 
-    public void Enter()
-    {
-        m_playerController = ServiceLocator
-            .Resolved<IPlayerFactory>()
-            .Create();
+        private PlayerController m_playerController;
 
-        m_cameraFollower.SetTarget(m_playerController.transform);
-        m_playerController.healh.died += OnDied;
-    }
-
-    public void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        public GameplayState(
+            StateMachine stateMachine,
+            CameraFollow cameraFollow)
         {
-            m_stateMachine.ChangeState<PauseMenuState>();
+            m_stateMachine = stateMachine;
+            m_cameraFollower = cameraFollow;
         }
-    }
 
-    public void Exit()
-    {
-        m_playerController.healh.died -= OnDied;
-        m_playerController = null;
-    }
+        public void Enter()
+        {
+            m_playerController = ServiceLocator
+                .Resolved<IPlayerFactory>()
+                .Create();
 
-    private void OnDied()
-    {
-        m_stateMachine.ChangeState<DeadState>();
+            m_cameraFollower.SetTarget(m_playerController.transform);
+            m_playerController.healh.died += OnDied;
+        }
+
+        public void Update()
+        {
+            if (Keyboard.current[Key.Escape].wasPressedThisFrame)
+            {
+                m_stateMachine.ChangeState<PauseMenuState>();
+            }
+        }
+
+        public void Exit()
+        {
+            m_playerController.healh.died -= OnDied;
+            m_playerController = null;
+        }
+
+        private void OnDied() => 
+            m_stateMachine.ChangeState<DeadState>();
     }
 }

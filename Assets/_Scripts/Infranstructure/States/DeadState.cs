@@ -6,7 +6,8 @@ public class DeadState : IState
     private StateMachine m_stateMachine;
     private DeadMenuView m_deadMenuView;
 
-    public DeadState(StateMachine stateMachine,
+    public DeadState(
+        StateMachine stateMachine,
         DeadMenuView deadMenuView)
     {
         m_stateMachine = stateMachine;
@@ -27,8 +28,6 @@ public class DeadState : IState
         m_deadMenuView.gameObject.SetActive(false);
     }
 
-    private void OnGoToMenuClicked()
-    {
+    private void OnGoToMenuClicked() => 
         m_stateMachine.ChangeState<MainMenuState>();
-    }
 }

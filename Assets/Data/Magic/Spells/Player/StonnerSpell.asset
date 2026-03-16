@@ -15,5 +15,14 @@ MonoBehaviour:
   m_spellName: Stonner
   m_visualEffect: {fileID: 3955492521650880668, guid: a9c7df40cb22d2c49a7390cf2d957d4f, type: 3}
   m_combination: 0300000003000000
+  m_effects:
+  - rid: 47934686023385153
   m_isTarget: 1
   m_radius: 5
+  references:
+    version: 2
+    RefIds:
+    - rid: 47934686023385153
+      type: {class: AttackEffect, ns: , asm: Assembly-CSharp}
+      data:
+        m_damage: 0

@@ -6,16 +6,18 @@ using UnityEngine;
 
 public partial class MagicSystem : MonoBehaviour
 {
-    public event Action<MagicState> StateChanged;
-    public event Action SpellCanceled;
-    public event Action<IReadOnlyList<ElementType>> ElementChanged
+    public event Action spellCanceled;
+
+    public event Action<MagicState> stateChanged;
+    public event Action<IReadOnlyList<ElementType>> elementChanged
     {
         add => spellPreporation.elementsChanged += value;
         remove => spellPreporation.elementsChanged -= value;
     }
 
     [SerializeField] private MagicConfig m_config;
-    [SerializeField] private MouseResolver m_mouseResolver;
+
+    private MouseResolver m_mouseResolver => ServiceLocator.Resolved<MouseResolver>();
 
     private MagicState m_state;
     private SpellPreporation m_spellPreporation;
@@ -28,7 +30,7 @@ public partial class MagicSystem : MonoBehaviour
             if (m_state != value)
             {
                 m_state = value;
-                StateChanged?.Invoke(m_state);
+                stateChanged?.Invoke(m_state);
             }
         }
     }
@@ -54,7 +56,7 @@ public partial class MagicSystem : MonoBehaviour
         if(state is MagicState.Preporation)
         {
             spellPreporation.Clear();
-            SpellCanceled?.Invoke();
+            spellCanceled?.Invoke();
 
             StartCooldown();
         }
