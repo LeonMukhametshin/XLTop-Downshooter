@@ -38,9 +38,9 @@ public class HealthComponent : MonoBehaviour, IHealth, IEffectable
             throw new InvalidOperationException("HealthComponent is already initialize");
         }
 
-        this.value = value;
-        maxValue = value;
-        m_isInitialize = true;  
+        maxValue = value < 0 ? 0 : value;
+        m_isInitialize = true;
+        this.value = maxValue;
     }
 
     public void Heal(float heal)
@@ -50,7 +50,13 @@ public class HealthComponent : MonoBehaviour, IHealth, IEffectable
             throw new ArgumentOutOfRangeException(nameof(heal), "Heal cannot be hegative");
         }
 
-        value += heal;
+        var newValue = value + heal;
+        if (m_isInitialize && maxValue > 0f)
+        {
+            newValue = Mathf.Min(newValue, maxValue);
+        }
+
+        value = newValue;
     }
 
     public void TakeDamage(float damage)

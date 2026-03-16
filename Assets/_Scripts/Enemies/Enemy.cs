@@ -112,8 +112,12 @@ public class Enemy : MonoBehaviour
         return distance < m_data.attackRange;
     }
 
-    private void OnDied() =>
+    private void OnDied()
+    {
+        m_stateMachine.ChangedState(EnemyState.Dead);
+        m_movement.StopMoving();
         died?.Invoke(this);
+    }
 
     private void OnStateChanged(EnemyState previousState, EnemyState nextState)
     {

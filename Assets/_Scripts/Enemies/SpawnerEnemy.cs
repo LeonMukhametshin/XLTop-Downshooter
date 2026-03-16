@@ -19,15 +19,14 @@ public class SpawnerEnemy : MonoBehaviour
 
         foreach(var point in m_spawnPoints)
         {
-            var enemy = GetEnemy();
+            var enemyPrefab = GetEnemy();
             var enemyData = GetEnemyData();
 
-            var enemyInstance = Instantiate(enemy, point);
+            var enemyInstance = Instantiate(enemyPrefab, point);
             enemyInstance.Initialize(enemyData, playerTransfrom);
 
-            enemy.died += OnDied;
-
-            m_currentEnemies.Add(enemy);
+            enemyInstance.died += OnDied;
+            m_currentEnemies.Add(enemyInstance);
         }
     }
 

@@ -15,6 +15,15 @@ public class SpellAoe : MonoBehaviour, ISpellAoe
             }
 
             var effectables = collider.GetComponents<IEffectable>();
+            if (effectables.Length == 0)
+            {
+                effectables = collider.GetComponentsInParent<IEffectable>();
+            }
+
+            if (effectables.Length == 0)
+            {
+                effectables = collider.GetComponentsInChildren<IEffectable>();
+            }
             effects.ApplyEffect(effectables);
         }
     }

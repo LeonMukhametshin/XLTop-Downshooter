@@ -5,6 +5,8 @@ public class SpellProjectile : MonoBehaviour, ISpellProjectile
 {
     [SerializeField] private Rigidbody m_rigidbody;
 
+    private Collider m_collider;
+
     private float m_speed;
     private float m_targetDistance;
     private float m_traveledDistance;
@@ -26,6 +28,27 @@ public class SpellProjectile : MonoBehaviour, ISpellProjectile
 
     private void Awake()
     {
+        if (!m_rigidbody)
+        {
+            m_rigidbody = GetComponent<Rigidbody>();
+        }
+
+        m_collider = GetComponent<Collider>();
+        if (!m_collider)
+        {
+            m_collider = GetComponentInChildren<Collider>();
+        }
+
+        if (m_collider && m_collider.gameObject != gameObject)
+        {
+            var relay = m_collider.GetComponent<ProjectileHitRelay>();
+            if (!relay)
+            {
+                relay = m_collider.gameObject.AddComponent<ProjectileHitRelay>();
+            }
+            relay.Bind(this);
+        }
+
         m_rigidbody.useGravity = false;
         m_rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
     }
@@ -48,13 +71,12 @@ public class SpellProjectile : MonoBehaviour, ISpellProjectile
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!m_initialized)
-        {
-            return;
-        }
+        HandleHit(other);
+    }
 
-        m_effects.ApplyEffect(other.gameObject.GetComponents<IEffectable>());
-        Destroy(gameObject);
+    private void OnCollisionEnter(Collision collision)
+    {
+        HandleHit(collision.collider);
     }
 
     public void Initialize(Vector3 targetPosition, float speed, IReadOnlyList<IEffect> effects)
@@ -80,4 +102,31 @@ public class SpellProjectile : MonoBehaviour, ISpellProjectile
 
     private void SetLinearVelocity() =>
         m_rigidbody.linearVelocity = m_direction * m_speed;
+
+    internal void HandleHit(Collider other)
+    {
+        if (!m_initialized || !other)
+        {
+            return;
+        }
+
+        if (other.gameObject.layer == gameObject.layer)
+        {
+            return;
+        }
+
+        var effectables = other.GetComponents<IEffectable>();
+        if (effectables.Length == 0)
+        {
+            effectables = other.GetComponentsInParent<IEffectable>();
+        }
+
+        if (effectables.Length == 0)
+        {
+            effectables = other.GetComponentsInChildren<IEffectable>();
+        }
+
+        m_effects.ApplyEffect(effectables);
+        Destroy(gameObject);
+    }
 }

@@ -10,15 +10,34 @@ namespace Assets.Scripts.Enemies.Views
 
         private void OnEnable()
         {
-            m_healthComponent.valueChanged += SetValue;
+            if (m_healthComponent)
+            {
+                m_healthComponent.valueChanged += SetValue;
+            }
+
+            SetValue();
         }
 
         private void OnDisable()
         {
-            m_healthComponent.valueChanged -= SetValue;
+            if (m_healthComponent)
+            {
+                m_healthComponent.valueChanged -= SetValue;
+            }
         }
 
-        private void SetValue() =>
-            m_bar.fillAmount = (float)m_healthComponent.value / (float)m_healthComponent.maxValue;
+        private void SetValue()
+        {
+            if (!m_bar || !m_healthComponent || m_healthComponent.maxValue <= 0f)
+            {
+                if (m_bar)
+                {
+                    m_bar.fillAmount = 0f;
+                }
+                return;
+            }
+
+            m_bar.fillAmount = m_healthComponent.value / m_healthComponent.maxValue;
+        }
     }
 }
